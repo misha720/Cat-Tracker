@@ -27,7 +27,7 @@
 				pos: self.pos 
 				size: self.size
 				radius:[0]
-		
+
 		# 	TOOLBAR
 		BoxLayout:
 			id:toolbar
@@ -56,8 +56,17 @@
 					size: self.size
 					radius:[0]
 
-			Label:
-				text:"Тут должен быть котейка"
+			BoxLayout:
+				size_hint:(None, None)
+				size:250,250
+				Image:
+					id:cat__image
+					source:"src/cat.gif"
+					size:250,250
+					allow_stretch: True
+					anime_delay:-1
+					anim_loop:1
+					
 		
 		#	CLOCK
 		AnchorLayout:

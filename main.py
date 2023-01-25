@@ -6,11 +6,13 @@
 import json
 import time
 
+
 #	KIVY
 from kivy.config import Config
 Config.set('graphics', 'resizable', 0)
 Config.set('graphics', 'width', 360)
 Config.set('graphics', 'height', 640)
+
 from kivy.app import App
 
 from kivy.uix.label import Label
@@ -20,8 +22,10 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.uix.widget import Widget
+from kivy.core.text import Label as CoreLabel
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
+from kivy.uix.popup import Popup
 
 from kivy.clock import Clock
 
@@ -53,6 +57,8 @@ class TimerScreen(Screen):
 			# Start
 			self.timer = Clock.schedule_interval(self.Callback_Clock, 1)
 			self.timer_ctrl = True
+			#self.ids.cat__image._coreimage.anim_reset(True)
+			self.ids.cat__image.anim_delay = 0.10
 
 
 class ShopScreen(Screen):
