@@ -57,8 +57,10 @@ class TimerScreen(Screen):
 			# Start
 			self.timer = Clock.schedule_interval(self.Callback_Clock, 1)
 			self.timer_ctrl = True
-			#self.ids.cat__image._coreimage.anim_reset(True)
-			self.ids.cat__image.anim_delay = 0.10
+			self.ids.cat__image._coreimage.anim_reset(True)
+			self.ids.cat__image.anim_delay = 0.1
+			self.ids.cat__image.anim_loop = 0
+			self.ids.cat__image.remove_from_cache ( )
 
 
 class ShopScreen(Screen):
