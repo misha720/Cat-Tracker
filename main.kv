@@ -1,634 +1,112 @@
 #:kivy 2.1.0
 
-<TodayScreen>:
+# BackGround = (255/255, 233/255, 189/255, 1)
+# Ponel = (255/255, 199/255, 150/255, 1)
+# Duble Ponel = (251/255, 147/255, 105/255, 1)
+
+
+<ClickToShop@Button>:
+	background_normal:'src/shop.png'
+	background_down:"src/shop.png"
+	on_press:print("*click*")
+
+<TimerScreen>:
+	
+	#	BODY
 	BoxLayout:
-		# Левая часть
+		id:body
+		orientation: 'vertical'
+		size_hint:(1,1)
+		padding:10,10,10,50
+		spacing:50
+
+		canvas:
+			Color:
+				rgba:(255/255, 199/255, 150/255, 1)
+			RoundedRectangle: 
+				pos: self.pos 
+				size: self.size
+				radius:[0]
+
+		# 	TOOLBAR
 		BoxLayout:
-			orientation: 'vertical'
-			size_hint:(None,None)
-			size:(200,640)
-			padding:10
-			canvas:
-				Color:
-					rgba:(30/255,30/255,30/255,1)
-				Rectangle: 
-					pos: self.pos 
-					size: self.size
-				
-			Button:
-				text:"Сегодня"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(63/255,63/255,63/255)
-				background_normal:''
-			Button:
-				text:"Планы"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-				on_press: root.manager.current = 'plans'
-			Button:
-				text:"Активность"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Питание"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Кошелёк"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Настроение"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Календарь"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Настройки"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
+			id:toolbar
+			size_hint:(1,None)
+			height:50
 
 			Widget:
 
-		# Правая сторона
-		BoxLayout:
-			padding:30,30,30,30
-			orientation:'vertical'
-
-			# Заголовок
-			AnchorLayout:
-				anchor_x:'left'
-				anchor_y:'top'
-				size_hint:(0.20, 0.05)
-
-				Label:
-					text:"Сегодня"
-					font_family:'Ubuntu'
-					font_size:'25sp'
-					halign:'left'
-					bold:True
-
-			# Все блоки информации
-			StackLayout:
-				size_hint:(1,1)
-				padding:0,10,0,0
-				spacing:10
-
-				# Задачи
-				BoxLayout:
-					orientation:'vertical'
-					size_hint:(None,None)
-					size:(270,200)
-					on_touch_down:root.manager.current = 'plans'
-
-					# Заголовок
-					BoxLayout:
-						size_hint:(1, 0.2)
-						
-						canvas:
-							Color:
-								rgba:(63/255,63/255,63/255,1)
-							RoundedRectangle: 
-								pos: self.pos 
-								size: self.size
-								radius:[10,10,0,0]
-						
-						Label:
-							text:'Задачи'
-							font_family:'Ubuntu'
-							font_size:'15sp'
-							bold:True
-					
-					# Список
-					BoxLayout:
-						orientation:'vertical'
-						size_hint:(1,1)
-						padding:10,0,10,0
-
-						canvas:
-							Color:
-								rgba:(30/255,30/255,30/255,1)
-							RoundedRectangle: 
-								pos: self.pos 
-								size: self.size
-								radius:[0,0,10,10]
-
-						Label:
-							id:list_item_1
-							text:""
-							font_family:'Ubuntu'
-							font_size:'15sp'
-							
-						Label:
-							id:list_item_2
-							text:""
-							font_family:'Ubuntu'
-							font_size:'15sp'
-								
-						Label:
-							id:list_item_3
-							text:""
-							font_family:'Ubuntu'
-							font_size:'15sp'
-
-						Button:
-							text:"..."
-							font_size:'15sp'
-							bold:True
-							font_family:'Ubuntu'
-							color:(108/255,73/255,211/255)
-							background_color:(30/255,30/255,30/255)
-							background_normal:''
-				
-				# Вода
-				BoxLayout:
-					orientation:'vertical'
-					size_hint:(None,None)
-					size:(145,200)
-					padding:5
-
-					canvas:
-						Color:
-							rgba:(79/255,56/255,146/255,1)
-						RoundedRectangle: 
-							pos: self.pos 
-							size: self.size
-							radius:[10]
-
-					# Заголовок
-					Label:
-						text: 'Вода'
-						size_hint:(1,0.15)
-						font_size:15
-						bold:True
-
-					# Круг
-					BoxLayout:
-						size_hint:(1,1)
-						padding:27,20,27,28
-
-						BoxLayout:
-							padding:10
-							canvas:
-								Color:
-									rgba:(108/255,73/255,211/255,1)
-								RoundedRectangle: 
-									pos: self.pos 
-									size: (81,81)
-									radius:[1000]
-
-							Label:
-								text:"0%"
-								size_hint:(None,None)
-								size:(61,61)
-								font_size:24
-								bold:True
-
-					# Таблица
-					GridLayout:
-						cols:2
-						size_hint:(1, 0.40)
-						padding:5,0,5,0
-						borders: 1,'solid',(0,0,0,1)
-
-						Label:
-							text: 'За сегодня'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							halign:'left'
-							valign:'top'
-						Label:
-							text: '0ml'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							bold:True
-							halign:'right'
-							valign:'top'
-						Label:
-							text: 'Цель'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							halign:'left'
-							valign:'top'
-						Label:
-							text: '0ml'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							bold:True
-							halign:'right'
-							valign:'top'
-
-				# Каллории
-				BoxLayout:
-					orientation:'vertical'
-					size_hint:(None,None)
-					size:(145,200)
-					padding:5
-
-					canvas:
-						Color:
-							rgba:(135/255,194/255,133/255,1)
-						RoundedRectangle: 
-							pos: self.pos 
-							size: self.size
-							radius:[10]
-
-					# Заголовок
-					Label:
-						text: 'Каллории'
-						size_hint:(1,0.15)
-						font_size:15
-						bold:True
-
-					# Круг
-					BoxLayout:
-						size_hint:(1,1)
-						padding:27,20,27,28
-
-						BoxLayout:
-							padding:10
-							canvas:
-								Color:
-									rgba:(153/255,219/255,150/255,1)
-								RoundedRectangle: 
-									pos: self.pos 
-									size: (81,81)
-									radius:[1000]
-
-							Label:
-								id:procent_in_circule
-								text:"56%"
-								size_hint:(None,None)
-								size:(61,61)
-								font_size:24
-								bold:True
-
-					# Таблица
-					GridLayout:
-						cols:2
-						size_hint:(1, 0.40)
-						padding:5,0,5,0
-						borders: 1,'solid',(0,0,0,1)
-
-						Label:
-							text: 'За сегодня'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							
-						Label:
-							id:today_in_circule
-							text: '672kl'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							bold:True
-							
-						Label:
-							text: 'Цель'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							
-						Label:
-							id:plan_in_circule
-							text: '1200kl'
-							size_hint:(None, None)
-							size:(64,20)
-							font_size:12
-							bold:True	
-
-<MyButtonInListView@Button>:
-	background_color:(63/255, 63/255, 63/255)
-	background_normal:''
-	
-	on_touch_down: self.callback(root.text)
-	
-	id:text_item_listview
-	text: root.text
-	size_hint:1,1
-	text_size:385, None
-	max_lines:0
-
-<PlansScreen>:
-	BoxLayout:
-		# Левая часть
-		BoxLayout:
-			orientation: 'vertical'
-			size_hint:(None,None)
-			size:(200,640)
-			padding:10
-			canvas:
-				Color:
-					rgba:(30/255,30/255,30/255,1)
-				Rectangle: 
-					pos: self.pos 
-					size: self.size
-				
-			Button:
-				text:"Сегодня"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-				on_press: root.manager.current = 'today'
-			Button:
-				text:"Планы"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(63/255,63/255,63/255)
-				background_normal:''
-			Button:
-				text:"Активность"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Питание"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Кошелёк"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Настроение"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Календарь"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-			Button:
-				text:"Настройки"
-				font_size:'15sp'
-				font_family:'Ubuntu'
-				size_hint:(1, 0.17)
-				background_color:(30/255,30/255,30/255)
-				background_normal:''
-
-			Widget:
-
-		# Правая часть
-		BoxLayout:
-			padding:30
-			orientation:'vertical'
-			
-			# Заголовок
-			AnchorLayout:
-				anchor_x:'left'
-				anchor_y:'top'
-				size_hint:(0.20, 0.05)
-
-				Label:
-					text:"Планы"
-					color:(1,1,1,1)
-					font_family:'Ubuntu'
-					font_size:'25sp'
-					halign:'left'
-					bold:True
-
-			# Настройки
-			BoxLayout:
-				padding:12
-				spacing:12
+			ClickToShop:
+				id:toolbar__BtnToShop
 				size_hint:(None,None)
-				size:(580,50)
+				size:(45,45)
 
-				Button:
-					text:"Сегодня"
-					background_color:(108/255,73/255,211/255)
-					background_normal:''
-					size_hint:(None,None)
-					size:(100,26)
-				Button:
-					text:"Неделя"
-					background_color:(108/255,73/255,211/255)
-					background_normal:''
-					size_hint:(None,None)
-					size:(100,26)
-				Button:
-					text:"Месяц"
-					background_color:(108/255,73/255,211/255)
-					background_normal:''
-					size_hint:(None,None)
-					size:(100,26)
-				Button:
-					text:"Год"
-					background_color:(108/255,73/255,211/255)
-					background_normal:''
-					size_hint:(None,None)
-					size:(100,26)
-			
-			# Border	
+		#	CAT
+		AnchorLayout:
+			id:cat
+			anchor_x:"center"
+			anchor_y:"center"
+			size_hint:(1,1)
+
+			canvas:
+				Color:
+					rgba:(255/255, 233/255, 189/255, 1)
+				RoundedRectangle: 
+					pos: self.pos 
+					size: self.size
+					radius:[0]
+
 			BoxLayout:
-				spacing:10
-				size_hint:None, None
-				size:580,485
+				size_hint:(None, None)
+				size:250,250
+				Image:
+					id:cat__image
+					source:"src/cat3.gif"
+					size:250,250
+					color:(255/255, 233/255, 189/255, 1)
+					allow_stretch: True
+					anime_delay:-1
+					anim_loop:-1
 
-				# To-Do
-				BoxLayout:
-					id:to_do_box
-					orientation:"vertical"
-					padding:10
-					spacing: 10
-					size_hint:(None,None)
-					size:(415,485)
+					
+		
+		#	CLOCK
+		AnchorLayout:
+			id:clock
+			anchor_x:"center"
+			anchor_y:"center"
+			size_hint:(1,None)
+			height:50
 
-					canvas:
-						Color:
-							rgba:(63/255,63/255,63/255,1)
-						RoundedRectangle: 
-							pos: self.pos 
-							size: self.size
-							radius:[10]
+			Label:
+				id:clock__text
+				size_hint:(None,None)
+				size:(150,50)
+				text:"00:00"
+				font_family:'Ubuntu'
+				font_size:'50sp'
+				bold:False
 
-					#BTN
-					BoxLayout:
-						size_hint:(None,None)
-						size:(395,35)
-						
-						Button:
-							id:add_task
-							text:"Добавить"
-							font_size: 15
-							size_hint:(None,None)
-							size:(395,35)
-							background_color:(135/255,194/255,133/255)
-							background_normal:''
-							on_press: root.add_new_task()
+		#	START/STOP
+		AnchorLayout:
+			id:button
+			anchor_x:"center"
+			anchor_y:"center"
+			size_hint:(1,None)
+			height:50
 
+			Button:
+				id:button__btn
+				size_hint:(None,None)
+				size:(150,50)
+				text:"Start"
+				font_family:'Ubuntu'
+				font_size:'20sp'
+				bold:False
+				background_color:(251/255, 147/255, 105/255)
+				background_normal:""
+				on_press:root.get_timer()
 
-					# Add new Task
-					BoxLayout:
-						id:input_add_task
-						orientation:"vertical"
-						padding:10
-						spacing:5
-						size_hint:(None,None)
-						size:(395,175)
-
-						canvas:
-							Color:
-								rgba:(79/255, 56/255, 146/255, 1)
-							RoundedRectangle: 
-								pos: self.pos 
-								size: self.size
-								radius:[10]
-
-						# Title
-						TextInput:
-							text:""
-							id:add_input_title_task
-							size_hint:(None,None)
-							size:(375,75)
-							hint_text:"Введите задачу"
-							cursor_color:(183/255, 162/255, 245/255)
-							hint_text_color: (183/255, 162/255, 245/255)
-							foreground_color:(1,1,1,1)
-							background_color:(108/255, 73/255, 211/255)
-							background_normal:''
-
-						# Keys
-						TextInput:
-							text:""
-							id:add_input_keys_task
-							size_hint:(None,None)
-							size:(375,35)
-							hint_text:"Введите теги"
-							cursor_color:(183/255, 162/255, 245/255)
-							hint_text_color: (183/255, 162/255, 245/255)
-							foreground_color:(1,1,1,1)
-							background_color:(108/255, 73/255, 211/255)
-							background_normal:''
-
-						# Add
-						Button:
-							id:add_input_button_task
-							size_hint:(None,None)
-							size:(375,35)
-							text:"Добавить"
-							background_color:(108/255, 73/255, 211/255)
-							background_normal:''
-							on_press: root.add_input_task()	
-						
-					# LIST
-					AnchorLayout:
-						anchor_x:"center"
-						anchor_y:"top"
-						size_hint:(1,1)
-
-						RecycleView:
-							id: rv
-							viewclass: 'MyButtonInListView'
-
-							RecycleBoxLayout:
-								id:rv_box
-								orientation: 'vertical'
-								default_height:35
-								default_size_hint: 1, None
-								size_hint_y: None
-								height: self.minimum_height
-
-				# Status
-				BoxLayout:
-					orientation:'vertical'
-
-					BoxLayout:
-						padding:30,10,30,10
-						orientation:'vertical'
-						size_hint_x:1
-						size_y:195
-
-						canvas:
-							Color:
-								rgba:(135/255,194/255,133/255, 1)
-							RoundedRectangle: 
-								pos: self.pos 
-								size: self.size
-								radius:[10]
-
-						# Заголовок
-						Label:
-							text: 'Статус'
-							size_hint:(1,0.15)
-							font_size:20
-							bold:True
-
-						# Круг
-						BoxLayout:
-							size_hint:(1,1)
-							padding:7,20,7,0
-
-							BoxLayout:
-								padding:5,10,10,10
-								canvas:
-									Color:
-										rgba:(153/255,219/255,150/255,1)
-									RoundedRectangle: 
-										pos: self.pos 
-										size: (81,81)
-										radius:[1000]
-
-								Label:
-									text:"50%"
-									size_hint:(None,None)
-									text_size:(81,81)
-									font_size:32
-									bold:True
-
-						# Текст
-						BoxLayout:
-							padding:0,21,0,0
-							
-							Label:
-								text: "Выполнено: 5 из 10"
-								size_hint:(1,1)
-								halign:"center"
-								text_size:(95,None)
-					Widget:
+<ShopScreen>:
+	BoxLayout:
+		
