@@ -13,99 +13,115 @@
 <TimerScreen>:
 	
 	#	BODY
-	BoxLayout:
-		id:body
-		orientation: 'vertical'
-		size_hint:(1,1)
-		padding:10,10,10,50
-		spacing:50
-
-		canvas:
-			Color:
-				rgba:(255/255, 199/255, 150/255, 1)
-			RoundedRectangle: 
-				pos: self.pos 
-				size: self.size
-				radius:[0]
-
-		# 	TOOLBAR
+	FloatLayout:
 		BoxLayout:
-			id:toolbar
-			size_hint:(1,None)
-			height:50
-
-			Widget:
-
-			ClickToShop:
-				id:toolbar__BtnToShop
-				size_hint:(None,None)
-				size:(45,45)
-
-		#	CAT
-		AnchorLayout:
-			id:cat
-			anchor_x:"center"
-			anchor_y:"center"
+			id:body
+			orientation: 'vertical'
 			size_hint:(1,1)
+			padding:10,10,10,50
+			spacing:50
 
 			canvas:
 				Color:
-					rgba:(255/255, 233/255, 189/255, 1)
+					rgba:(255/255, 199/255, 150/255, 1)
 				RoundedRectangle: 
 					pos: self.pos 
 					size: self.size
 					radius:[0]
 
+			# 	TOOLBAR
 			BoxLayout:
-				size_hint:(None, None)
-				size:250,250
-				Image:
-					id:cat__image
-					source:"src/cat3.gif"
-					size:250,250
-					color:(255/255, 233/255, 189/255, 1)
-					allow_stretch: True
-					anime_delay:-1
-					anim_loop:-1
+				id:toolbar
+				size_hint:(1,None)
+				height:50
 
-					
+				Widget:
+
+				ClickToShop:
+					id:toolbar__BtnToShop
+					size_hint:(None,None)
+					size:(45,45)
+
+			#	CAT
+			AnchorLayout:
+				id:cat
+				anchor_x:"center"
+				anchor_y:"center"
+				size_hint:(1,1)
+
+				BoxLayout:
+					size_hint:(None, None)
+					size:300,300
+					padding:45
+
+					canvas:
+						Color:
+							rgba:(255/255, 233/255, 189/255, 1)
+						RoundedRectangle: 
+							pos: self.pos 
+							size: self.size
+							radius:[500]
+
+					Image:
+						id:cat__image
+						source:"src/cat3.gif"
+						allow_stretch: False
+						anime_delay:-1
+						anim_loop:0
+						#size:10,10
+						color:(255/255, 233/255, 189/255, 1)
+			
+			#	CLOCK
+			AnchorLayout:
+				id:clock
+				anchor_x:"center"
+				anchor_y:"center"
+				size_hint:(1,None)
+				height:50
+
+				Label:
+					id:clock__text
+					size_hint:(None,None)
+					size:(150,50)
+					text:"00:00"
+					font_family:'Ubuntu'
+					font_size:'50sp'
+					bold:False
+
+			#	START/STOP
+			AnchorLayout:
+				id:button
+				anchor_x:"center"
+				anchor_y:"center"
+				size_hint:(1,None)
+				height:50
+
+				Button:
+					id:button__btn
+					size_hint:(None,None)
+					size:(150,50)
+					text:"Start"
+					font_family:'Ubuntu'
+					font_size:'20sp'
+					bold:False
+					background_color:(251/255, 147/255, 105/255)
+					background_normal:""
+					on_press:root.get_timer()
+
+	BoxLayout:
+		id:result__box
+		size_hint:0.75, 0.5
+		pos:(root.center_x - self.width // 2, - self.height)
+
+		canvas:
+			Color:
+				rgba:(251/255, 147/255, 105/255, 1)
+			RoundedRectangle: 
+				pos: self.pos 
+				size: self.size
+				radius:[10]
 		
-		#	CLOCK
-		AnchorLayout:
-			id:clock
-			anchor_x:"center"
-			anchor_y:"center"
-			size_hint:(1,None)
-			height:50
 
-			Label:
-				id:clock__text
-				size_hint:(None,None)
-				size:(150,50)
-				text:"00:00"
-				font_family:'Ubuntu'
-				font_size:'50sp'
-				bold:False
-
-		#	START/STOP
-		AnchorLayout:
-			id:button
-			anchor_x:"center"
-			anchor_y:"center"
-			size_hint:(1,None)
-			height:50
-
-			Button:
-				id:button__btn
-				size_hint:(None,None)
-				size:(150,50)
-				text:"Start"
-				font_family:'Ubuntu'
-				font_size:'20sp'
-				bold:False
-				background_color:(251/255, 147/255, 105/255)
-				background_normal:""
-				on_press:root.get_timer()
 
 <ShopScreen>:
 	BoxLayout:
