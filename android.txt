@@ -1,0 +1,3 @@
+title=Cat Tracker
+author=zero_company
+orientation=portrait
